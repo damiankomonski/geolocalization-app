@@ -1,0 +1,109 @@
+//Main variables
+$font-size-base: 1rem;
+
+// Colors
+$primary: #003fd3;
+
+//Headings variables
+$h1-font-size: 4.875rem;
+$h2-font-size: 3.875rem;
+$h3-font-size: 3rem;
+$h4-font-size: 2rem;
+$h5-font-size: 1.5rem;
+$h6-font-size: 1.25rem;
+
+//Buttons variables
+
+// Inputs variables
+$input-focus-border-color: #0034af;
+
+// Spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25, // 4px
+  2: $spacer * .5, // 8px
+  3: $spacer, // 16px 
+  4: $spacer * 1.5, // 24px
+  5: $spacer * 3, // 48px
+);
+
+// Font sizes
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  64: 4rem,
+  48: 3rem,
+  60: 3.75rem
+);
+
+// Import Bootstrap 5
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+
+// Colors
+$custom-theme-color: (
+  "primarylight": #E3F5D9
+);
+$theme-colors: map-merge($custom-theme-color, $theme-colors);
+
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Utilities
+$utilities: map-merge(
+  $utilities, 
+  (
+    "width": (
+      property: width,
+      class: w,
+      responsive: true,
+      values: (
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        80: 80%,
+        100: 100%,
+        auto: auto
+      )
+    ),
+    "height": (
+        property: height,
+        class: h,
+        values: (
+          25: 25%,
+          50: 50%,
+          75: 75%,
+          100: 100%,
+          200: 200px,
+          240: 240px,
+          auto: auto
+        )
+      ),
+    "flex-basis": (
+      property: flex-basis,
+      class: flex-basis,
+      responsive: true,
+      values: (
+        50: 50%,
+        33: 33.33333%,
+        auto: auto
+      )
+    ),
+    "font-size": (
+      rfs: false,
+      property: font-size,
+      class: fs,
+      responsive: true,
+      values: $font-sizes
+    )
+  )
+);
+
+// Import Bootstrap 5
+@import "~bootstrap/scss/bootstrap.scss";
