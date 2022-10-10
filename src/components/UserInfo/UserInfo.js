@@ -1,10 +1,12 @@
 import React from "react";
 import "./UserInfo.scss";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 
 function UserInfo(){
     return (
         <Col md="4" xs="12">
+            <Spinner animation="grow" variant="secondary" />
+
             <h3 className="h6">Your info</h3>
             <p className="mb-1">IP Address: 168.178.124.200</p>
             <p className="mb-1">City: Mielec</p>

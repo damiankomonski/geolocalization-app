@@ -1,10 +1,12 @@
 import React from "react";
 import "./SearchResultsInfo.scss";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 
 function SearchResultsInfo(){
     return (
         <Col md="4" xs="12">
+            <Spinner animation="grow" variant="secondary" />
+
             <h3 className="h6">Search results info</h3>
             <p className="mb-1">IP Address: 168.178.124.200</p>
             <p className="mb-1">City: Mielec</p>

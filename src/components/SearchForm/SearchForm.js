@@ -1,6 +1,6 @@
 import React from "react";
 import "./SearchForm.scss";
-import { Col, Row, Form, InputGroup, Button } from "react-bootstrap";
+import { Col, Row, Form, InputGroup, Button, Alert } from "react-bootstrap";
 
 function SearchForm(){
     return (
@@ -18,6 +18,9 @@ function SearchForm(){
                     <Button variant="primary" id="button-addon2" type="submit">Search</Button>
                 </InputGroup>
             </Form>
+
+            {/* <Alert key={1} variant="danger">Error!</Alert> */}
+
         </Col>
     )
 }

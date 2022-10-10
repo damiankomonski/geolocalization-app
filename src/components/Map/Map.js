@@ -1,6 +1,6 @@
 import React from "react";
 import "./Map.scss";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
 import L from 'leaflet';
 import "leaflet/dist/leaflet.css"
@@ -17,6 +17,8 @@ function Map(){
 
     return (
         <Col md="8" xs="12">
+            <Spinner animation="grow" variant="secondary" />
+            
             <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} className="h-240 mb-4 rounded-3">
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
