@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchForm.scss";
-import { Col, Row, Form, InputGroup, Button, Alert } from "react-bootstrap";
+import { Col, Form, InputGroup, Button, Alert } from "react-bootstrap";
 
-function SearchForm(){
+function SearchForm(props){
+    
+    function handleSubmit(e){
+        e.preventDefault();
+        props.onSearchSubmit();
+    }
+
     return (
         <Col xs="12">
             <h2 className="h5">Localize IP or URL address</h2>
 
-            <Form className="mb-4">
+            <Form className="mb-4" onSubmit={handleSubmit}>
                 <InputGroup className="mb-3">
                     <Form.Control
                     placeholder="IP or URL address"

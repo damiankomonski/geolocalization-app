@@ -69,6 +69,7 @@ $utilities: map-merge(
         75: 75%,
         80: 80%,
         100: 100%,
+        24: 24px,
         auto: auto
       )
     ),
@@ -101,7 +102,15 @@ $utilities: map-merge(
       class: fs,
       responsive: true,
       values: $font-sizes
-    )
+    ),
+    "min-height": (
+      property: min-height,
+      class: minh,
+      values: (
+        100: 100%,
+        240: 240px
+      )
+    ),
   )
 );
 

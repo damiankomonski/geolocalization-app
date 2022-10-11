@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Map.scss";
 import { Col, Row, Spinner } from "react-bootstrap";
 import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
@@ -7,7 +7,9 @@ import "leaflet/dist/leaflet.css"
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
-function Map(){
+function Map(props){
+    let [isLoading, setIsLoading] = useState(true);
+
     let DefaultIcon = L.icon({
         iconUrl: icon,
         shadowUrl: iconShadow
@@ -15,21 +17,35 @@ function Map(){
     
     L.Marker.prototype.options.icon = DefaultIcon;
 
+    useEffect(() => {
+        if(props.longitude && props.latitude){
+            setIsLoading(false)
+        }
+    }, [props.latitude, props.longitude])
+
     return (
-        <Col md="8" xs="12">
-            <Spinner animation="grow" variant="secondary" />
-            
-            <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} className="h-240 mb-4 rounded-3">
+        <Col md="8" xs="12" className="minh-240">
+
+            {isLoading ? 
+            <div className="d-flex justify-content-center align-items-center h-100">
+                <Spinner animation="grow" variant="secondary" />
+            </div>
+
+            :
+
+            <MapContainer center={[props.latitude, props.longitude]} zoom={13} scrollWheelZoom={true} className="h-240 mb-4 rounded-3">
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker position={[51.505, -0.09]}>
+                <Marker position={[props.latitude, props.longitude]}>
                     <Popup>
                         Tekst marker
                     </Popup>
                 </Marker>
             </MapContainer>
+        }
+
         </Col>
     )
 }

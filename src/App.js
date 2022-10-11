@@ -1,7 +1,7 @@
 import './App.scss';
 import { Container, Row } from "react-bootstrap";
 import AllSearches from "./components/AllSearches/AllSearches";
-import ApplicationSearch from './components/Test/ApplicationSearch';
+import ApplicationSearch from './components/ApplicationSearch/ApplicationSearch';
 
 function App() {
   return (
