@@ -6,7 +6,7 @@ import UserInfo from "../UserInfo/UserInfo.js";
 import SearchResultsInfo from "../SearchResultsInfo/SearchResultsInfo.js";
 import SearchForm from "../SearchForm/SearchForm.js";
 
-function ApplicationSearch(){
+function ApplicationSearch(props){
     let [searchQuery, setSearchQuery] = useState(null);
     let [userData, setUserData] = useState(null);
     let [searchResults, setSearchResults] = useState(null);
@@ -15,7 +15,7 @@ function ApplicationSearch(){
     let [searchHistory, setSearchHistory] = useState([]);
 
     function getUserInfo(){
-        return fetch("http://api.ipstack.com/check?access_key=17fdba0cc74233f02bdccbdc6f6c3486")
+        return fetch("http://api.ipstack.com/check?access_key=bc9c9aaf5439b5057d9ae9683b79c924")
             .then(response => response.json())
             .then(data => data)
             .catch((error) => {console.error(error)})
@@ -27,16 +27,21 @@ function ApplicationSearch(){
         setSearchResults(null);
         setShowResults(true);
 
-        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=17fdba0cc74233f02bdccbdc6f6c3486")
+        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=bc9c9aaf5439b5057d9ae9683b79c924")
             .then(response => response.json())
             .then((data) => {
+                console.log(data);
                 if(data.hasOwnProperty("error")){
-                    setError(data);
+                    setError(data.error.info);
                 } else{
                     setSearchResults(data);
                 }
             })
             .catch((error) => {console.error(error)});
+    }
+
+    function handleSetError(value){
+        setError(value);
     }
 
     useEffect(() => {
@@ -64,7 +69,7 @@ function ApplicationSearch(){
                 />
             </Row>
             <Row>
-                <SearchForm onSearchSubmit={onSearchSubmit} errorInfo={error ? error.error.info : null} />
+                <SearchForm handleSearchHistory={props.setSearchHistory} onSearchSubmit={onSearchSubmit} errorInfo={error ? error : null} handleSetError={handleSetError} />
             </Row>
             {showResults ? 
             <Row>

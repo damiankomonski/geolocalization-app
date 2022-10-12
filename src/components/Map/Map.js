@@ -37,7 +37,7 @@ function Map(props){
     
         :
     
-        <MapContainer center={[props.latitude, props.longitude]} zoom={13} scrollWheelZoom={true} className="h-240 mb-4 rounded-3">
+        <MapContainer center={[props.latitude, props.longitude]} zoom={12} scrollWheelZoom={true} className="h-240 mb-4 rounded-3">
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
