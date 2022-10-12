@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./Map.scss";
-import { Col, Row, Spinner } from "react-bootstrap";
-import { MapContainer, TileLayer, useMap, Marker, Popup } from "react-leaflet";
+import { Col, Spinner } from "react-bootstrap";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from 'leaflet';
 import "leaflet/dist/leaflet.css"
 import icon from 'leaflet/dist/images/marker-icon.png';
@@ -27,7 +27,7 @@ function Map(props){
 
     return (
         <>
-        {!props.error ?
+        {props.show ?
         <Col md="8" xs="12" className="minh-240">
 
         {isLoading ? 

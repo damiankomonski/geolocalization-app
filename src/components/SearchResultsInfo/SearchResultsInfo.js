@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./SearchResultsInfo.scss";
-import { Col, Row, Spinner } from "react-bootstrap";
+import { Col, Spinner } from "react-bootstrap";
 
 function SearchResultsInfo(props){
     let [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,7 @@ function SearchResultsInfo(props){
 
     return (
         <>
-        {!props.error ? 
+        {props.show ? 
         <Col md="4" xs="12">
 
         {isLoading ? 

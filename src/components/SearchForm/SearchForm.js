@@ -6,20 +6,14 @@ function SearchForm(props){
     let searchInput = React.createRef();
     let [error, setError] = useState(null);
 
-    // console.log("error", props.errorInfo);
-
     function checkIfIP(value){
-        const regexExp = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gi;
+        const regexExp = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
         return regexExp.test(value);
     }
 
     function checkIfURL(value) {
-        try { 
-            return Boolean(new URL(value)); 
-        }
-        catch(e){ 
-            return false; 
-        }
+        const regexExp = /^(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/;
+        return regexExp.test(value);
     }
 
     function handleSubmit(e){
@@ -28,8 +22,9 @@ function SearchForm(props){
         if(checkIfIP(searchInput.current.value) || checkIfURL(searchInput.current.value)){
             props.onSearchSubmit(searchInput.current.value);
             props.handleSearchHistory(searchInput.current.value);
+            setError(null);
         } else{
-            props.handleSetError("You don't type valid URL or IP Address. URL must start from http:// or https://");
+            setError("You don't type valid URL or IP Address");
         }
     }
 
@@ -38,7 +33,7 @@ function SearchForm(props){
             <h2 className="h5">Localize IP or URL address</h2>
 
             <Form className="mb-4" onSubmit={handleSubmit}>
-                <InputGroup className="mb-3">
+                <InputGroup className="mb-1">
                     <Form.Control
                     placeholder="IP or URL address"
                     aria-label="Recipient's username"
@@ -48,10 +43,11 @@ function SearchForm(props){
                     />
                     <Button variant="primary" id="button-addon2" type="submit">Search</Button>
                 </InputGroup>
+                <Form.Text className="text-muted">Don't start URL from http:// or https://</Form.Text>
             </Form>
 
-            {props.errorInfo  ?
-            <Alert key={1} variant="danger">{props.errorInfo}</Alert>
+            {error  ?
+            <Alert key={1} variant="danger">{error}</Alert>
             :
             null
             }
