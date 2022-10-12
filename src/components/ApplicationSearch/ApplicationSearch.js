@@ -9,24 +9,39 @@ import SearchForm from "../SearchForm/SearchForm.js";
 function ApplicationSearch(){
     let [searchQuery, setSearchQuery] = useState(null);
     let [userData, setUserData] = useState(null);
+    let [searchResults, setSearchResults] = useState(null);
+    let [error, setError] = useState(null);
+    let [showResults, setShowResults] = useState(false);
+    let [searchHistory, setSearchHistory] = useState([]);
 
     function getUserInfo(){
-        return fetch("http://api.ipstack.com/check?access_key=1390a344e426248dd0ae8a40015141ca")
+        return fetch("http://api.ipstack.com/check?access_key=17fdba0cc74233f02bdccbdc6f6c3486")
             .then(response => response.json())
             .then(data => data)
-            .catch((err) => {console.error(err)})
+            .catch((error) => {console.error(error)})
     };
 
-    function onSearchSubmit(){
-        fetch("http://api.ipstack.com/134.201.250.155?access_key=1390a344e426248dd0ae8a40015141ca")
+    function onSearchSubmit(searchInput){
+        let searchQuery = searchInput;
+        setError(null);
+        setSearchResults(null);
+        setShowResults(true);
+
+        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=17fdba0cc74233f02bdccbdc6f6c3486")
             .then(response => response.json())
-            .then(data => console.log(data));
+            .then((data) => {
+                if(data.hasOwnProperty("error")){
+                    setError(data);
+                } else{
+                    setSearchResults(data);
+                }
+            })
+            .catch((error) => {console.error(error)});
     }
 
     useEffect(() => {
         getUserInfo()
             .then((data) => {
-                console.log(data);
                 setUserData(data);
             });
     }, []);
@@ -35,8 +50,8 @@ function ApplicationSearch(){
         <Col md="9" xs="12" className="pt-4">
             <Row>
                 <Map
-                    latitude={userData ? userData.latitude : null}
-                    longitude={userData ? userData.longitude : null}
+                    latitude={userData ? userData.latitude : 0}
+                    longitude={userData ? userData.longitude : 0}
                 />
                 <UserInfo
                     ip={userData ? userData.ip : null}
@@ -49,12 +64,30 @@ function ApplicationSearch(){
                 />
             </Row>
             <Row>
-                <SearchForm onSearchSubmit={onSearchSubmit} />
+                <SearchForm onSearchSubmit={onSearchSubmit} errorInfo={error ? error.error.info : null} />
             </Row>
+            {showResults ? 
             <Row>
-                <Map />
-                <SearchResultsInfo />
+                <Map 
+                    latitude={searchResults ? searchResults.latitude : 0}
+                    longitude={searchResults ? searchResults.longitude : 0} 
+                    error={error ? error : null}
+                />
+                <SearchResultsInfo 
+                    ip={searchResults ? searchResults.ip : null}
+                    continent={searchResults ? searchResults.continent_name : null}
+                    country={searchResults ? searchResults.country_name : null}
+                    city={searchResults ? searchResults.city : null}
+                    zip_code={searchResults ? searchResults.zip : null}
+                    country_flag={searchResults ? searchResults.location.country_flag : null}
+                    capital={searchResults ? searchResults.location.capital : null}
+                    error={error ? error : null}
+                />
             </Row>
+            :
+            null
+            }
+            
         </Col>
     )
 }

@@ -4,6 +4,9 @@ import AllSearches from "./components/AllSearches/AllSearches";
 import ApplicationSearch from './components/ApplicationSearch/ApplicationSearch';
 
 function App() {
+  // sessionStorage.clear();
+  // sessionStorage.setItem("test", "test1");
+
   return (
     <div className="App">
       <Container>

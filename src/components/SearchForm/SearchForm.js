@@ -3,10 +3,14 @@ import "./SearchForm.scss";
 import { Col, Form, InputGroup, Button, Alert } from "react-bootstrap";
 
 function SearchForm(props){
-    
+    let searchInput = React.createRef();
+
+    // console.log("error", props.errorInfo);
+
     function handleSubmit(e){
         e.preventDefault();
-        props.onSearchSubmit();
+
+        props.onSearchSubmit(searchInput.current.value);
     }
 
     return (
@@ -20,12 +24,17 @@ function SearchForm(props){
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                     size="lg"
+                    ref={searchInput}
                     />
                     <Button variant="primary" id="button-addon2" type="submit">Search</Button>
                 </InputGroup>
             </Form>
 
-            {/* <Alert key={1} variant="danger">Error!</Alert> */}
+            {props.errorInfo ?
+            <Alert key={1} variant="danger">{props.errorInfo}</Alert>
+            :
+            null
+            }
 
         </Col>
     )

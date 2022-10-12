@@ -2,7 +2,7 @@ import React from "react";
 import "./AllSearches.scss";
 import { Col } from "react-bootstrap";
 
-function AllSearches(){
+function AllSearches(props){
     return (
         <Col xs="12" md="3" className="pt-4">
             <h3 className="h5">All your searches:</h3>
