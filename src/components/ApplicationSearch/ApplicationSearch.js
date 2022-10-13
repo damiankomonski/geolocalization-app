@@ -29,7 +29,7 @@ function ApplicationSearch(props){
         setSearchResults(null);
         setShowResults(true);
 
-        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=" + + process.env.REACT_APP_APP_K)
+        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=" + process.env.REACT_APP_APP_K)
             .then(response => response.json())
             .then((data) => {
                 console.log(data);
