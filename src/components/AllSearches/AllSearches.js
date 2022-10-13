@@ -1,6 +1,6 @@
 import React from "react";
 import "./AllSearches.scss";
-import { Col } from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 
 function AllSearches(props){
     console.log(Array.isArray(props.searchHistory));
@@ -23,14 +23,13 @@ function AllSearches(props){
                     return (
                         <li key={index++}>
                             {element}
-                            {/* <a href="">{element}</a> */}
                         </li>
                     );
                 })
                 .reverse()}
             </ul>
-
-            <a href="#" onClick={clearHistory}>Clear history</a>
+            
+            <Button variant="link" onClick={clearHistory}>Clear history</Button>
             </>
             }
             

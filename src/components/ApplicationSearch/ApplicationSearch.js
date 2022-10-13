@@ -7,26 +7,29 @@ import SearchResultsInfo from "../SearchResultsInfo/SearchResultsInfo.js";
 import SearchForm from "../SearchForm/SearchForm.js";
 
 function ApplicationSearch(props){
-    let [searchQuery, setSearchQuery] = useState(null);
+    let [searchQuery, setSearchQuery] = useState("");
     let [userData, setUserData] = useState(null);
     let [searchResults, setSearchResults] = useState(null);
     let [APIerror, setAPIError] = useState(null);
     let [showResults, setShowResults] = useState(false);
 
+    function handleChangeSearchQuery(value){
+        setSearchQuery(value);
+    }
+
     function getUserInfo(){
-        return fetch("http://api.ipstack.com/check?access_key=aa9b3e7a752e1e89a70450a96fc9b423")
+        return fetch("http://api.ipstack.com/check?access_key=4dc98d137881bfde9b6d4eaeea2af436")
             .then(response => response.json())
             .then(data => data)
             .catch((error) => {console.error(error)})
     };
 
-    function onSearchSubmit(searchInput){
-        let searchQuery = searchInput;
+    function onSearchSubmit(){
         setAPIError(null);
         setSearchResults(null);
         setShowResults(true);
 
-        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=aa9b3e7a752e1e89a70450a96fc9b423")
+        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=4dc98d137881bfde9b6d4eaeea2af436")
             .then(response => response.json())
             .then((data) => {
                 console.log(data);
@@ -65,7 +68,12 @@ function ApplicationSearch(props){
                 />
             </Row>
             <Row>
-                <SearchForm handleSearchHistory={props.setSearchHistory} onSearchSubmit={onSearchSubmit} />
+                <SearchForm 
+                    handleSearchHistory={props.setSearchHistory} 
+                    onSearchSubmit={onSearchSubmit} 
+                    searchQuery={searchQuery} 
+                    onSearchQueryChange={handleChangeSearchQuery}
+                />
             </Row>
 
             <Row>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './App.scss';
 import { Container, Row } from "react-bootstrap";
 import AllSearches from "./components/AllSearches/AllSearches";
@@ -8,9 +8,9 @@ function App() {
   let searches = JSON.parse(sessionStorage.getItem("searches")) || [];
   let [searchHistory, setSearchHistory] = useState(searches);
 
-  function handleSearchHistory(itemValue){
-    setSearchHistory([...searchHistory, ...[itemValue]]);
-    sessionStorage.setItem("searches", JSON.stringify([...searchHistory, ...[itemValue]]));
+  function handleSearchHistory(value){
+    setSearchHistory([...searchHistory, ...[value]]);
+    sessionStorage.setItem("searches", JSON.stringify([...searchHistory, ...[value]]));
   }
 
   function clearHistory(){

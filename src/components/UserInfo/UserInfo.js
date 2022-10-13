@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./UserInfo.scss";
-import { Col, Row, Spinner } from "react-bootstrap";
+import { Col, Spinner } from "react-bootstrap";
 
 function UserInfo(props){
     let [isLoading, setIsLoading] = useState(true);
@@ -35,7 +35,6 @@ function UserInfo(props){
         </>
 
         }
-
         </Col>
     )
 }
