@@ -18,7 +18,7 @@ function ApplicationSearch(props){
     }
 
     function getUserInfo(){
-        return fetch("http://api.ipstack.com/check?access_key=4dc98d137881bfde9b6d4eaeea2af436")
+        return fetch("http://api.ipstack.com/check?access_key=" + process.env.REACT_APP_APP_K)
             .then(response => response.json())
             .then(data => data)
             .catch((error) => {console.error(error)})
@@ -29,7 +29,7 @@ function ApplicationSearch(props){
         setSearchResults(null);
         setShowResults(true);
 
-        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=4dc98d137881bfde9b6d4eaeea2af436")
+        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=" + + process.env.REACT_APP_APP_K)
             .then(response => response.json())
             .then((data) => {
                 console.log(data);
