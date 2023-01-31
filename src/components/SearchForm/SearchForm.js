@@ -47,7 +47,7 @@ function SearchForm(props){
                     />
                     <Button variant="primary" id="button-addon2" type="submit">Search</Button>
                 </InputGroup>
-                <Form.Text className="text-muted">Don't start URL from http:// or https:// <span className="fst-italic">(IPStack API restriction)</span></Form.Text>
+                <Form.Text className="text-muted">Don't start URL from http:// or https:// <span className="fst-italic">(API restriction)</span></Form.Text>
             </Form>
 
             {error  ?

@@ -3,8 +3,6 @@ import "./AllSearches.scss";
 import { Col, Button } from "react-bootstrap";
 
 function AllSearches(props){
-    console.log(Array.isArray(props.searchHistory));
-
     function clearHistory(e){
         e.preventDefault();
         props.clearHistory();

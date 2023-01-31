@@ -6,11 +6,11 @@ function UserInfo(props){
     let [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if(props.ip && props.continent && props.country && props.zip_code && props.country_flag && props.capital && props.city){
+        if(props.ip && props.country && props.city && props.continent && props.zip_code && props.currency){
             setIsLoading(false)
         }
 
-    }, [props.ip, props.continent, props.country, props.city, props.zip_code, props.country_flag, props.capital]);
+    }, [props.ip, props.country, props.city, props.continent, props.zip_code, props.currency]);
 
     return (
         <Col md="4" xs="12" className="minh-240">
@@ -24,14 +24,13 @@ function UserInfo(props){
         :
 
         <>
-            <h3 className="h6">Your info</h3>
+            <h3 className="h6">Your approximate location</h3>
             <p className="mb-1">IP Address: {props.ip}</p>
+            <p className="mb-1">Country: {props.country}</p>
             <p className="mb-1">City: {props.city}</p>
             <p className="mb-1">Continent: {props.continent}</p>
-            <p className="mb-1">Country: <img src={props.country_flag} alt={props.country} className="w-24 h-auto rounded-1 position-relative top-m4 ms-1 me-1" /> {props.country}</p>
-            <p className="mb-1">City: {props.city}</p>
             <p className="mb-1">Zip: {props.zip_code}</p>
-            <p className="mb-1">Capital: {props.capital}</p>
+            <p className="mb-1">Currency: {props.currency}</p>
         </>
 
         }

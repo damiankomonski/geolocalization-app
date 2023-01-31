@@ -13,26 +13,33 @@ function ApplicationSearch(props){
     let [APIerror, setAPIError] = useState(null);
     let [showResults, setShowResults] = useState(false);
 
+    // I use https://ip-api.com/ 
+
     function handleChangeSearchQuery(value){
         setSearchQuery(value);
     }
 
     function getUserInfo(){
-        return fetch("http://api.ipstack.com/check?access_key=" + process.env.REACT_APP_APP_K)
+        let url = new URL("http://ip-api.com/json/");
+        url.searchParams.append("fields", "9498623");
+
+        return fetch(url)
             .then(response => response.json())
             .then(data => data)
             .catch((error) => {console.error(error)})
     };
 
     function onSearchSubmit(){
+        let url = new URL("http://ip-api.com/json/" + searchQuery);
+        url.searchParams.append("fields", "9498623");
+
         setAPIError(null);
         setSearchResults(null);
         setShowResults(true);
 
-        fetch("http://api.ipstack.com/" + searchQuery + "?access_key=" + process.env.REACT_APP_APP_K)
+        fetch(url)
             .then(response => response.json())
             .then((data) => {
-                console.log(data);
                 if(data.hasOwnProperty("error")){
                     setAPIError(data.error.info);
                 } else{
@@ -53,18 +60,17 @@ function ApplicationSearch(props){
         <Col md="9" xs="12" className="pt-4">
             <Row>
                 <Map
-                    latitude={userData ? userData.latitude : 0}
-                    longitude={userData ? userData.longitude : 0}
+                    latitude={userData ? userData.lat : 0}
+                    longitude={userData ? userData.lon : 0}
                     show={true}
                 />
                 <UserInfo
-                    ip={userData ? userData.ip : null}
-                    continent={userData ? userData.continent_name : null}
-                    country={userData ? userData.country_name : null}
+                    ip={userData ? userData.query : null}
+                    continent={userData ? userData.continent : null}
+                    country={userData ? userData.country : null}
                     city={userData ? userData.city : null}
                     zip_code={userData ? userData.zip : null}
-                    country_flag={userData ? userData.location.country_flag : null}
-                    capital={userData ? userData.location.capital : null}
+                    currency={userData ? userData.currency : null}
                 />
             </Row>
             <Row>
@@ -78,18 +84,17 @@ function ApplicationSearch(props){
 
             <Row>
                 <Map 
-                    latitude={searchResults ? searchResults.latitude : 0}
-                    longitude={searchResults ? searchResults.longitude : 0} 
+                    latitude={searchResults ? searchResults.lat : 0}
+                    longitude={searchResults ? searchResults.lon : 0} 
                     show={showResults}
                 />
                 <SearchResultsInfo 
-                    ip={searchResults ? searchResults.ip : null}
-                    continent={searchResults ? searchResults.continent_name : null}
-                    country={searchResults ? searchResults.country_name : null}
+                    ip={searchResults ? searchResults.query : null}
+                    continent={searchResults ? searchResults.continent : null}
+                    country={searchResults ? searchResults.country : null}
                     city={searchResults ? searchResults.city : null}
                     zip_code={searchResults ? searchResults.zip : null}
-                    country_flag={searchResults ? searchResults.location.country_flag : null}
-                    capital={searchResults ? searchResults.location.capital : null}
+                    currency={searchResults ? searchResults.currency : null}
                     show={showResults}
                 />
             </Row>
