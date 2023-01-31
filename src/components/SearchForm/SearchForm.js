@@ -14,31 +14,31 @@ function SearchForm(props){
         return regexExp.test(value);
     }
 
-    function checkIfURL(value) {
-        const regexExp = /^(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/i;
-        return regexExp.test(value);
-    }
+    // function checkIfURL(value) {
+    //     const regexExp = /^(www\.)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}(:[0-9]{1,5})?(\/.*)?$/i;
+    //     return regexExp.test(value);
+    // }
 
     function handleSubmit(e){
         e.preventDefault();
 
-        if(checkIfIP(props.searchQuery) || checkIfURL(props.searchQuery)){
+        if(checkIfIP(props.searchQuery)){
             props.onSearchSubmit();
             props.handleSearchHistory(props.searchQuery);
             setError(null);
         } else{
-            setError("You don't type valid URL or IP Address");
+            setError("You don't type valid IP Address");
         }
     }
 
     return (
         <Col xs="12">
-            <h2 className="h5">Localize IP or URL address</h2>
+            <h2 className="h5">Localize IP address</h2>
 
             <Form className="mb-4" onSubmit={handleSubmit}>
                 <InputGroup className="mb-1">
                     <Form.Control
-                    placeholder="IP or URL address"
+                    placeholder="IP address"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                     size="lg"
@@ -47,7 +47,7 @@ function SearchForm(props){
                     />
                     <Button variant="primary" id="button-addon2" type="submit">Search</Button>
                 </InputGroup>
-                <Form.Text className="text-muted">Don't start URL from http:// or https:// <span className="fst-italic">(API restriction)</span></Form.Text>
+                <Form.Text className="text-muted">Type in IP address</Form.Text>
             </Form>
 
             {error  ?

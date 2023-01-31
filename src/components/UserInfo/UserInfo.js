@@ -6,11 +6,11 @@ function UserInfo(props){
     let [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if(props.ip && props.country && props.city && props.continent && props.zip_code && props.currency){
+        if(props.ip && props.country && props.city && props.continent && props.zip_code && props.capital){
             setIsLoading(false)
         }
 
-    }, [props.ip, props.country, props.city, props.continent, props.zip_code, props.currency]);
+    }, [props.ip, props.country, props.city, props.continent, props.zip_code, props.capital]);
 
     return (
         <Col md="4" xs="12" className="minh-240">
@@ -30,7 +30,7 @@ function UserInfo(props){
             <p className="mb-1">City: {props.city}</p>
             <p className="mb-1">Continent: {props.continent}</p>
             <p className="mb-1">Zip: {props.zip_code}</p>
-            <p className="mb-1">Currency: {props.currency}</p>
+            <p className="mb-1">Currency: {props.capital}</p>
         </>
 
         }

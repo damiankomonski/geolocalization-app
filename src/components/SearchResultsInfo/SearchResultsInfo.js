@@ -6,13 +6,13 @@ function SearchResultsInfo(props){
     let [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        if(props.ip && props.continent && props.country && props.city && props.zip_code && props.currency){
+        if(props.ip && props.continent && props.country && props.city && props.zip_code && props.capital){
             setIsLoading(false);
         } else{
             setIsLoading(true);
         }
 
-    }, [props.ip, props.continent, props.country, props.city, props.zip_code, props.currency]);
+    }, [props.ip, props.continent, props.country, props.city, props.zip_code, props.capital]);
 
     return (
         <>
@@ -34,7 +34,7 @@ function SearchResultsInfo(props){
             <p className="mb-1">Continent: {props.continent}</p>
             <p className="mb-1">Country: {props.country}</p>
             <p className="mb-1">Zip: {props.zip_code}</p>
-            <p className="mb-1">Currency: {props.currency}</p>
+            <p className="mb-1">Currency: {props.capital}</p>
         </>
 
         }
