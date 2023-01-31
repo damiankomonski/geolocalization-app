@@ -1,6 +1,7 @@
 Application that shows IP address location, city, state, zip code, etc. It shows your location and give you possibility to search.
 
 **Watch live demo**
+
 [Click here](https://koski.studio/geo/)
 
 Technologies:
