@@ -2,7 +2,7 @@ Application that shows IP address location, city, state, zip code, etc. It shows
 
 **Watch live demo**
 
-[Click here](https://koski.studio/geo/)
+[Click here](https://koski.studio/geo/index.html)
 
 Technologies:
 - Create-react-app
